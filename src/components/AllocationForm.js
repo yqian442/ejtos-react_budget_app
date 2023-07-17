@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
-const AllocationForm = (props) => {
-    const { dispatch,remaining  } = useContext(AppContext);
+const AllocationForm = () => {
+    const { dispatch,remaining } = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
+    const [currency, setCurrency] = useState('£');
 
     const submitEvent = () => {
 
@@ -20,6 +21,7 @@ const AllocationForm = (props) => {
             name: name,
             cost: parseInt(cost),
         };
+        
         if(action === "Reduce") {
             dispatch({
                 type: 'RED_EXPENSE',
@@ -41,6 +43,7 @@ const AllocationForm = (props) => {
                     <div className="input-group-prepend">
                 <label className="input-group-text" htmlFor="inputGroupSelect01">Department</label>
                   </div>
+
                   <select className="custom-select" id="inputGroupSelect01" onChange={(event) => setName(event.target.value)}>
                         <option defaultValue>Choose...</option>
                         <option value="Marketing" name="marketing"> Marketing</option>
@@ -58,13 +61,24 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
+                    
+                  <div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
+                <label className="input-group-text" htmlFor="inputGroupSelect03"></label>
+                  </div>
+                  <select className="custom-select" id="inputGroupSelect03" onChange={(event) => setCurrency(event.target.value)}>
+                        <option defaultValue>Currency(£ Pound)</option>
+                        <option value="$" name="$ Dollar">$ Dollar</option>
+                        <option value="£" name="£ Pound">£ Pound</option>
+                        <option value="€" name="€ Euro">€ Euro</option>
+                        <option value="₹" name="₹ Ruppee">₹ Ruppee</option>
+                  </select>
 
-                    <input
+                  {currency}<input
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
+                        style={{ marginLeft: '2rem' , size: 10, value: 10}}
                         onChange={(event) => setCost(event.target.value)}>
                         </input>
 
