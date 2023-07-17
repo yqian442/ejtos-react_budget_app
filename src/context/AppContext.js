@@ -80,13 +80,13 @@ export const AppReducer = (state, action) => {
 const initialState = {
     budget: 2000,
     expenses: [
-        { id: "Marketing", name: 'Marketing', cost: 50 },
-        { id: "Finance", name: 'Finance', cost: 300 },
-        { id: "Sales", name: 'Sales', cost: 70 },
-        { id: "Human Resource", name: 'Human Resource', cost: 40 },
-        { id: "IT", name: 'IT', cost: 500 },
+        { id: "Marketing", name: 'Marketing', currency: '£', cost: 50 },
+        { id: "Finance", name: 'Finance', currency: '£', cost: 300 },
+        { id: "Sales", name: 'Sales', currency: '£', cost: 70 },
+        { id: "Human Resource", name: 'Human Resource', currency: '£', cost: 40 },
+        { id: "IT", name: 'IT', currency: '£', cost: 500 },
     ],
-    currency: '$'
+    currency: '£'
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
@@ -105,7 +105,6 @@ export const AppProvider = (props) => {
         }, 0);
         remaining = state.budget - totalExpenses;
     }
-
     return (
         <AppContext.Provider
             value={{
